@@ -6,6 +6,13 @@ public class Car {
 	private String color;
 	private Integer slotNumber;
 
+	public Car(String registrationNumber, String color, Integer slotNumber) {
+		super();
+		this.registrationNumber = registrationNumber;
+		this.color = color;
+		this.slotNumber = slotNumber;
+	}
+
 	public String getColor() {
 		return color;
 	}
