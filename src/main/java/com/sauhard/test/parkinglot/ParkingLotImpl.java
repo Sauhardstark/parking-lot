@@ -20,6 +20,7 @@ public class ParkingLotImpl implements ParkingLot {
 		this.currSize = 0;
 		this.slotsMap = new HashMap<>();
 		displayManager = new DisplayManager();
+		System.out.println("Created a parking lot with " + size + " slots");
 	}
 
 	@Override
