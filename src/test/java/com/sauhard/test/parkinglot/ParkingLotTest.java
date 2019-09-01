@@ -50,10 +50,24 @@ public class ParkingLotTest {
 	public void parkShouldAssignSlotForMultipleCars() throws IOException {
 		outContent.reset();
 		ParkingLot parkingLot = new ParkingLotImpl(5);
-		parkingLot.park("Test-Reg", "Black");
-		parkingLot.park("Test-Reg", "White");
+		parkingLot.park("Test-Reg1", "Black");
+		parkingLot.park("Test-Reg2", "White");
 		String actual = outContent.toString().trim();
 		assertEquals("Allocated slot number: 1\nAllocated slot number: 2", actual);
+	}
+	
+	@Test
+	public void parkShouldAssignLowestSlotForMultipleCars() throws IOException {
+		outContent.reset();
+		ParkingLot parkingLot = new ParkingLotImpl(5);
+		parkingLot.park("Test-Reg1", "Black");
+		parkingLot.park("Test-Reg2", "White");
+		parkingLot.park("Test-Reg3", "Red");
+		parkingLot.leave(2);
+		outContent.reset();
+		parkingLot.park("Test-Reg4", "Grey");
+		String actual = outContent.toString().trim();
+		assertEquals("Allocated slot number: 2", actual);
 	}
 	
 	@Test

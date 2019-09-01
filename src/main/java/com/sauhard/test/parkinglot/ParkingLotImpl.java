@@ -1,11 +1,7 @@
 package com.sauhard.test.parkinglot;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import com.sauhard.test.parkinglot.domain.Car;
@@ -15,12 +11,15 @@ public class ParkingLotImpl implements ParkingLot {
 	private final Integer size;
 	private Integer currSize;
 	private Map<Integer, Car> slotsMap;
-	
+
+	private final DisplayManager displayManager;
+
 	public ParkingLotImpl(Integer size) {
 		super();
 		this.size = size;
 		this.currSize = 0;
 		this.slotsMap = new HashMap<>();
+		displayManager = new DisplayManager();
 	}
 
 	@Override
@@ -49,46 +48,22 @@ public class ParkingLotImpl implements ParkingLot {
 
 	@Override
 	public void status() {
-		System.out.println("Slot No.\t" + "Registration No\t" + "Colour");
-
-		List<Integer> parkedSlotsList = new ArrayList<Integer>(slotsMap.keySet());
-		Collections.sort(parkedSlotsList);
-
-		printSlotAndCarInformation(parkedSlotsList);
-	}
-
-	private void printSlotAndCarInformation(List<Integer> parkedSlotsList) {
-		for (Integer slot : parkedSlotsList) {
-			Car car = slotsMap.get(slot);
-			String color = car.getColor();
-			String registrationNumber = car.getRegistrationNumber();
-			System.out.println(slot + "\t" + registrationNumber + "\t" + color);
-		}
+		displayManager.printStatus(slotsMap);
 	}
 
 	@Override
 	public void printSlotNumbersForColor(String color) {
-		List<Integer> slots =slotsMap.entrySet().parallelStream().filter(i -> i.getValue().getColor().equals(color)).map(i -> i.getKey())
-				.collect(Collectors.toList());	
-		if (null == slots || slots.isEmpty()) {
-			System.out.println("Not found");
-		}
-		else {
-			Collections.sort(slots);
-			String slotsString = slots.stream().map(i -> i.toString()).collect(Collectors.joining(", "));
-			System.out.println(slotsString);
-		}
+		displayManager.printSlotNumbersForColor(slotsMap, color);
 	}
 
 	@Override
 	public void printRegistrationNumbersForColor(String color) {
-		
+		displayManager.printRegistrationNumersForColor(slotsMap, color);
 	}
 
 	@Override
 	public void printSlotNumberForRegistrationNumber(String registrationNumber) {
-		// TODO Auto-generated method stub
-
+		displayManager.printSlotNumberForRegistrationNumber(slotsMap, registrationNumber);
 	}
 
 }
