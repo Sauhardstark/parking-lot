@@ -23,9 +23,9 @@ It will take input from console and will continue until you enter `exit`
 Go to the parking_lot directory and run the following command to run it using input from a file
 
 ----
-	$ ./bin/parking_lot
+	$ ./bin/parking_lot test.txt
 ----
-It will take input from console and will continue until you enter `exit`
+It will take input from console and will continue until you enter `exit`. As a basic example, `test.txt` is present in project
 
 ### Forms of Input
 1) It provide an interactive command prompt based shell where commands can be typed in
