@@ -31,24 +31,30 @@ public class App {
 
 	private static void manageInput(BufferedReader br) throws IOException {
 		String line = br.readLine();
-		Integer size = Integer.parseInt(line.split("\\s+")[1]);
+		String[] firstLineWords = line.split("\\s+");
+		while (!firstLineWords[0].equalsIgnoreCase("create_parking_lot")) {
+			System.out.println("Please create a parking lot before performing any other action");
+			line = br.readLine();
+			firstLineWords = line.split("\\s+");
+		}
+		Integer size = Integer.parseInt(firstLineWords[1]);
 		ParkingLot parkingLot = new ParkingLotImpl(size);
 		while ((line = br.readLine()) != null) {
 			String[] words = line.split("\\s+");
 			String identifier = words[0];
-			if (identifier.equals(park)) {
+			if (identifier.equalsIgnoreCase(park)) {
 				parkingLot.park(words[1], words[2]);
-			} else if (identifier.equals(leave)) {
+			} else if (identifier.equalsIgnoreCase(leave)) {
 				parkingLot.leave(Integer.parseInt(words[1]));
-			} else if (identifier.equals(status)) {
+			} else if (identifier.equalsIgnoreCase(status)) {
 				parkingLot.status();
-			} else if (identifier.equals(registrationNoColor)) {
+			} else if (identifier.equalsIgnoreCase(registrationNoColor)) {
 				parkingLot.printRegistrationNumbersForColor(words[1]);
-			} else if (identifier.equals(slotColor)) {
+			} else if (identifier.equalsIgnoreCase(slotColor)) {
 				parkingLot.printSlotNumbersForColor(words[1]);
-			} else if (identifier.equals(slotRegistrationNo)) {
+			} else if (identifier.equalsIgnoreCase(slotRegistrationNo)) {
 				parkingLot.printSlotNumberForRegistrationNumber(words[1]);
-			} else if (identifier.equals(exit)) {
+			} else if (identifier.equalsIgnoreCase(exit)) {
 				return;
 			}
 		}

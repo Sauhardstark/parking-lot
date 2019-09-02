@@ -42,9 +42,14 @@ public class ParkingLotImpl implements ParkingLot {
 
 	@Override
 	public void leave(Integer slotNumber) {
-		slotsMap.remove(slotNumber);
-		currSize--;
-		System.out.println("Slot number " + slotNumber + " is free");
+		if (slotsMap.containsKey(slotNumber)) {
+			slotsMap.remove(slotNumber);
+			currSize--;
+			System.out.println("Slot number " + slotNumber + " is free");
+		}
+		else {
+			System.out.println("Not found");
+		}
 	}
 
 	@Override
