@@ -1,4 +1,4 @@
-# parking-lot
+# Parking-Lot
 Parking lot problem
 
 An automated parking system built on Java.
@@ -10,7 +10,8 @@ Go to the parking_lot directory and run the following command
 	$ ./bin/setup
 ----
 
-== Run(Interactive)
+
+== Run (Interactive)
 Go to the parking_lot directory and run the following command to run it using interactive shell
 
 ----
