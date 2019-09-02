@@ -27,11 +27,20 @@ public class ParkingLotTest {
 	public static void restoreStreams() {
 		System.setOut(originalOut);
 	}
+	
+	@Test
+	public void parkingLotShouldBeCreated() throws IOException {
+		outContent.reset();
+		new ParkingLotImpl(4);
+		String actual = outContent.toString().trim();
+		assertEquals("Created a parking lot with 4 slots", actual);
+	}
 
 	@Test
 	public void parkShouldAssignSlotForEmptyLot() throws IOException {
 		outContent.reset();
 		ParkingLot parkingLot = new ParkingLotImpl(5);
+		outContent.reset();
 		parkingLot.park("Test-Reg", "Black");
 		String actual = outContent.toString().trim();
 		assertEquals("Allocated slot number: 1", actual);
@@ -41,6 +50,7 @@ public class ParkingLotTest {
 	public void parkShouldNotAssignSlotForFullLot() throws IOException {
 		outContent.reset();
 		ParkingLot parkingLot = new ParkingLotImpl(0);
+		outContent.reset();
 		parkingLot.park("Test-Reg", "Black");
 		String actual = outContent.toString().trim();
 		assertEquals("Sorry, parking lot is full", actual);
@@ -50,6 +60,7 @@ public class ParkingLotTest {
 	public void parkShouldAssignSlotForMultipleCars() throws IOException {
 		outContent.reset();
 		ParkingLot parkingLot = new ParkingLotImpl(5);
+		outContent.reset();
 		parkingLot.park("Test-Reg1", "Black");
 		parkingLot.park("Test-Reg2", "White");
 		String actual = outContent.toString().trim();

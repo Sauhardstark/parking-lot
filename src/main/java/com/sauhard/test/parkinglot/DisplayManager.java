@@ -13,7 +13,7 @@ import com.sauhard.test.parkinglot.domain.Car;
 public class DisplayManager {
 
 	public void printStatus(Map<Integer, Car> slotsMap) {
-		System.out.println("Slot No." + "\tRegistration No\t\t" + "Colour");
+		System.out.printf("%-12s%-19s%s%n", "Slot No.", "Registration No", "Colour");
 
 		List<Integer> parkedSlotsList = new ArrayList<Integer>(slotsMap.keySet());
 		Collections.sort(parkedSlotsList);
@@ -26,7 +26,7 @@ public class DisplayManager {
 			Car car = slotsMap.get(slot);
 			String color = car.getColor();
 			String registrationNumber = car.getRegistrationNumber();
-			System.out.println(slot + "\t\t" + registrationNumber + "\t\t" + color);
+			System.out.printf("%-12s%-19s%s%n", slot, registrationNumber, color);
 		}
 	}
 

@@ -18,7 +18,7 @@ import com.sauhard.test.parkinglot.domain.Car;
 
 @RunWith(JUnitPlatform.class)
 public class DisplayManagerTest {
-	
+
 	private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private static final PrintStream originalOut = System.out;
 
@@ -31,7 +31,7 @@ public class DisplayManagerTest {
 	public static void restoreStreams() {
 		System.setOut(originalOut);
 	}
-	
+
 	@Test
 	public void displayManagerCheckForEmptyMap() throws IOException {
 		outContent.reset();
@@ -39,7 +39,7 @@ public class DisplayManagerTest {
 		Map<Integer, Car> slotsMap = new HashMap<>();
 		displayManager.printStatus(slotsMap);
 		String actual = outContent.toString().trim();
-		assertEquals("Slot No.	Registration No		Colour", actual);
+		assertEquals("Slot No.    Registration No    Colour", actual);
 	}
 
 	@Test
@@ -52,12 +52,10 @@ public class DisplayManagerTest {
 		slotsMap.put(3, new Car("KA-01-BB-0001", "Red", 3));
 		displayManager.printStatus(slotsMap);
 		String actual = outContent.toString().trim();
-		assertEquals("Slot No.	Registration No		Colour\n" + 
-				"1		KA-01-HH-1234		White\n" + 
-				"2		KA-01-HH-9999		Black\n" + 
-				"3		KA-01-BB-0001		Red", actual);
+		assertEquals("Slot No.    Registration No    Colour\n" + "1           KA-01-HH-1234      White\n"
+				+ "2           KA-01-HH-9999      Black\n" + "3           KA-01-BB-0001      Red", actual);
 	}
-	
+
 	@Test
 	public void displayManagerShouldPrintAllSlotsForColor() throws IOException {
 		outContent.reset();
@@ -70,7 +68,7 @@ public class DisplayManagerTest {
 		String actual = outContent.toString().trim();
 		assertEquals("1, 3", actual);
 	}
-	
+
 	@Test
 	public void displayManagerShouldPrintNotFoundSlotForWrongColor() throws IOException {
 		outContent.reset();
@@ -83,7 +81,7 @@ public class DisplayManagerTest {
 		String actual = outContent.toString().trim();
 		assertEquals("Not found", actual);
 	}
-	
+
 	@Test
 	public void displayManagerShouldPrintAllRegistrationNosForColor() throws IOException {
 		outContent.reset();
@@ -96,7 +94,7 @@ public class DisplayManagerTest {
 		String actual = outContent.toString().trim();
 		assertEquals("KA-01-HH-1234, KA-01-BB-0001", actual);
 	}
-	
+
 	@Test
 	public void displayManagerShouldPrintNotFoundForWrongColor() throws IOException {
 		outContent.reset();
@@ -109,7 +107,7 @@ public class DisplayManagerTest {
 		String actual = outContent.toString().trim();
 		assertEquals("Not found", actual);
 	}
-	
+
 	@Test
 	public void displayManagerPrintSlotNumberForRegistrationNumber() throws IOException {
 		outContent.reset();
@@ -122,7 +120,7 @@ public class DisplayManagerTest {
 		String actual = outContent.toString().trim();
 		assertEquals("3", actual);
 	}
-	
+
 	@Test
 	public void displayManagerPrintNotFoundForWrongRegistrationNumber() throws IOException {
 		outContent.reset();
@@ -135,5 +133,5 @@ public class DisplayManagerTest {
 		String actual = outContent.toString().trim();
 		assertEquals("Not found", actual);
 	}
-	
+
 }

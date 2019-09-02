@@ -19,8 +19,7 @@ public class App {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		if (args.length > 0) {
 			String fileName = args[0];
-			String filePath = "./target/".concat(fileName);
-			try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+			try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 				manageInput(br);
 			}
 		} else {
